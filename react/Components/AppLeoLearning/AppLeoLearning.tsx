@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLazyQuery } from 'react-apollo'
 
 import getDocument from './graphql/getDocument.graphql'
 
 function AppLeoLearning() {
+  const [currentSkuId, setCurrentSkuId] = useState('')
   const [getRecipes, { data, error, loading }] = useLazyQuery(getDocument)
 
   return (
     <div>
       <div>
-        <input type="text" id="SKUid_input" />
+        <input
+          type="text"
+          id="SKUid_input"
+          onChange={(e) => {
+            setCurrentSkuId(e.target.value)
+          }}
+          value={currentSkuId}
+        />
         <button
           type="button"
           id="searchButton"
@@ -18,7 +26,7 @@ function AppLeoLearning() {
               variables: {
                 acronym: 'RL',
                 fields: ['postContent'],
-                where: `postSKU=01`,
+                where: `postSKU=${currentSkuId}`,
               },
             })
           }
