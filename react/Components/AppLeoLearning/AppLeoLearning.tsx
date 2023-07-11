@@ -1,53 +1,57 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useLazyQuery } from 'react-apollo'
 
-type ValorSkuId = {
-  target: {
-    value: string
-  }
-}
+import getDocument from './graphql/getDocument.graphql'
 
 function AppLeoLearning() {
-  const [SkuIdInput, setSkuIdInput] = useState('')
-  const [recipe, setRecipe] = useState('')
-
-  const searchForRecipe = () => {
-    const myHeaders = new Headers()
-
-    myHeaders.append(
-      'Cookie',
-      'VtexIdclientAutCookie=eyJhbGciOiJFUzI1NiIsImtpZCI6IjcxOEQ0RDgzMTFBNzg0MzE2MjQ5NDlCNDg1RTFFMDgyN0NGQ0Y4MDMiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJsZW9uYXJkby5iYWx6YW5vQGFjY3QuZ2xvYmFsIiwiYWNjb3VudCI6ImVzdGFnaW9hY2N0IiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkZDI3ODc4Zi00ZGVmLTQ2ZDItYjg3MC0wN2MyZGY5MmNiNjgiLCJleHAiOjE2ODcwMjE2OTYsInVzZXJJZCI6ImEyMTAxYTRmLTc4YjktNGZhMy1iMzgyLWFjOTkzNWEzNzY5OCIsImlhdCI6MTY4NjkzNTI5NiwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjViY2YwNTFiLTVjZmItNDNmZC1iMjgyLWU5NmFmMTFlYWY2MSJ9.swftK8Ne7B94mSpyjSOKLRmCDCHaTib6oYmjTLEAsuzc1TKrGXXR-VcqGljUKRC8RqE-u21i3RwRiWq4azorsg'
-    )
-
-    fetch(`/api/dataentities/RL/search?postSKU=${SkuIdInput}`, {
-      method: 'GET',
-      headers: myHeaders,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        setRecipe(result[0].postContent)
-      })
-      .catch((error) => alert(error))
-  }
-
-  const handleChange = (event: ValorSkuId) => {
-    setSkuIdInput(event.target.value)
-  }
+  const [getRecipes, { data, error, loading }] = useLazyQuery(getDocument)
 
   return (
     <div>
       <div>
-        <input
-          type="text"
-          id="SKUid_input"
-          onChange={handleChange}
-          value={SkuIdInput}
-        />
-        <button type="button" id="searchButton" onClick={searchForRecipe}>
+        <input type="text" id="SKUid_input" />
+        <button
+          type="button"
+          id="searchButton"
+          onClick={() =>
+            getRecipes({
+              variables: {
+                acronym: 'RL',
+                fields: ['postContent'],
+                where: `postSKU=01`,
+              },
+            })
+          }
+        >
           Buscar
+        </button>
+        <button
+          type="button"
+          id="searchButton"
+          onClick={() =>
+            getRecipes({
+              variables: {
+                acronym: 'RL',
+                fields: ['postContent'],
+                sort: 'postDate DESC',
+              },
+            })
+          }
+        >
+          Buscar mais recente
         </button>
       </div>
       <div>
-        <p>{recipe}</p>
+        {error && <p> Ocorreu um erro </p>}
+        {data && (
+          <div>
+            {!data.documents.length && <p>esse id não existe</p>}
+            {!!data.documents.length && (
+              <p>{data.documents[0].fields?.[0]?.value}</p>
+            )}
+          </div>
+        )}
+        {loading && <p>Carregando </p>}
       </div>
     </div>
   )
