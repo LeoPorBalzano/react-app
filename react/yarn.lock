@@ -2518,6 +2518,10 @@ esprima@^4.0.0, esprima@^4.0.1:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
+"estagioacct.appleolearning@https://appleolearning--estagioacct.myvtex.com/_v/private/typings/linked/v1/estagioacct.appleolearning@0.0.0+build1686844053/public/@types/estagioacct.appleolearning":
+  version "0.0.0"
+  resolved "https://appleolearning--estagioacct.myvtex.com/_v/private/typings/linked/v1/estagioacct.appleolearning@0.0.0+build1686844053/public/@types/estagioacct.appleolearning#5850406bfbd6395f1cc4582aa91e91d3c5bbb505"
+
 estraverse@^4.2.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
@@ -5336,6 +5340,14 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.133.2/public/@types/vtex.render-runtime":
+  version "8.133.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.133.2/public/@types/vtex.render-runtime#6fc9c79c52f292c67f583e96d66a56b7b61eabd1"
+
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide":
+  version "9.146.9"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide#d1601fedfb665c6173334753171717da64e670bc"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

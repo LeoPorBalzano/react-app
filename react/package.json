@@ -1,5 +1,5 @@
 {
-  "name": "CHANGE_ME",
+  "name": "appleolearning",
   "version": "0.0.0",
   "scripts": {
     "test": "vtex-test-tools test"
@@ -18,8 +18,11 @@
     "@vtex/test-tools": "^3.3.2",
     "@vtex/tsconfig": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.5",
+    "estagioacct.appleolearning": "https://appleolearning--estagioacct.myvtex.com/_v/private/typings/linked/v1/estagioacct.appleolearning@0.0.0+build1686844053/public/@types/estagioacct.appleolearning",
     "graphql": "^14.6.0",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.133.2/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide"
   },
   "resolutions": {
     "@types/jest": "26.0.15"

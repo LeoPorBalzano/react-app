@@ -1,0 +1,8 @@
+{
+  "app-leo-learning": {
+    "component": "AppLeoLearning"
+  },
+  "greeting": {
+    "component": "Greeting"
+  }
+}
