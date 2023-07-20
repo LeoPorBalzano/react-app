@@ -4,8 +4,9 @@ import { useLazyQuery } from 'react-apollo'
 import getDocument from './graphql/getDocument.graphql'
 
 function AppLeoLearning() {
-  const [currentSkuId, setCurrentSkuId] = useState('')
-  const [getRecipes, { data, error, loading }] = useLazyQuery(getDocument)
+  const [currentSkuId, setCurrentSkuId] = useState<string>('')
+  const [getRecipes, { data, error, loading }] =
+    useLazyQuery<AxiosResponse>(getDocument)
 
   return (
     <div>
@@ -55,7 +56,7 @@ function AppLeoLearning() {
           <div>
             {!data.documents.length && <p>esse id não existe</p>}
             {!!data.documents.length && (
-              <p>{data.documents[0].fields?.[0]?.value}</p>
+              <p>{data.documents[0].fields?.[0].value}</p>
             )}
           </div>
         )}
@@ -66,3 +67,14 @@ function AppLeoLearning() {
 }
 
 export default AppLeoLearning
+
+interface AxiosResponse {
+  documents: Array<{
+    fields:
+      | undefined
+      | Array<{
+          value: string
+          __typename: string
+        }>
+  }>
+}
